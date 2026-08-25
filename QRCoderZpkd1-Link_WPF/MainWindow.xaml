@@ -1,0 +1,482 @@
+<Window x:Class="QRCoderZpkd1_Link.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        d:DesignHeight="600"
+        d:DesignWidth="800"
+        Title="{DynamicResource Lang_WindowTitle}"
+        Height="600"
+        Width="800"
+        ResizeMode="CanMinimize"
+        Background="{DynamicResource WindowBackground}"
+        WindowStartupLocation="CenterScreen"
+        SourceInitialized="Window_SourceInitialized">
+  <!-- Корневой контейнер с динамическим масштабом для подгонки под рабочую область монитора -->
+  <Grid x:Name="RootLayoutGrid">
+    <Grid.LayoutTransform>
+      <ScaleTransform x:Name="AppScaleTransform"
+                      ScaleX="1.0"
+                      ScaleY="1.0"/>
+    </Grid.LayoutTransform>
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="360"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+      <!--  Левая панель предпросмотра шириной 360 пикселей -->
+      <!--  Блок с названием и версией  -->
+      <Border Grid.Column="0"
+              Style="{StaticResource PreviewCardStyle}"
+              Margin="5"
+              Width="350"
+              Height="450">
+        <Grid>
+          <Grid.RowDefinitions>
+            <!-- Строка 0: Фиксированная высота шапки (достаточно для 1 или 2 строк текста) -->
+            <RowDefinition Height="35"/>
+            <!-- Строка 1: QR-код (всегда на фиксированном месте, не сдвигается при переносе текста) -->
+            <RowDefinition Height="325"/>
+            <!-- Строка 2: Список моделей (занимает все оставшееся пространство снизу) -->
+            <RowDefinition Height="*"/>
+          </Grid.RowDefinitions>
+          <TextBlock Grid.Row="0"
+                     Foreground="{DynamicResource TextBlack}"
+                     FontSize="12"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     Margin="5,-6,5,0"
+                     TextWrapping="Wrap"
+                     TextAlignment="Center">
+            <!-- Тип файла -->
+            <Run x:Name="PreviewType"
+                 FontSize="13"
+                 Text=""/>
+            <!-- Имя файла -->
+            <Run x:Name="PreviewName"
+                 FontSize="14"
+                 FontWeight="Bold"
+                 Text=" "/>
+            <!-- Версия файла -->
+            <Run x:Name="PreviewVersion"
+                 FontSize="13"
+                 FontWeight="Bold"
+                 Text=""/>
+          </TextBlock>
+          <!--  Центральный блок с QR-кодом  -->
+          <Border Grid.Row="1"
+                  BorderThickness="1.5"
+                  BorderBrush="#3c3c3c"
+                  Background="#FFFFFF"
+                  Height="325"
+                  Width="325"
+                  CornerRadius="14"
+                  VerticalAlignment="Top"
+                  HorizontalAlignment="Center">
+            <Image x:Name="QrPreviewImage"
+                   Source="/Assets/Icons/logo_qr.png"
+                   Stretch="Uniform"
+                   Margin="5"/>
+          </Border>
+          <!--  Блок списка выбранных моделей  -->
+          <!-- Viewbox. Он следит за тем, чтобы внутренний TextBlock не выходил за рамки. Если текст не помещается, Viewbox автоматически уменьшает его масштаб (StretchDirection="DownOnly"). -->
+          <Viewbox Grid.Row="2"
+                   Margin="5,5,5,5"
+                   VerticalAlignment="Top"
+                   StretchDirection="DownOnly"
+                   Stretch="Uniform">
+            <TextBlock x:Name="ModelsListText"
+                       Width="350"
+                       Foreground="{DynamicResource TextBlack}"
+                       FontSize="14"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"
+                       TextWrapping="Wrap"
+                       TextAlignment="Center"
+                       FontWeight="Bold"
+                       Text=""/>
+          </Viewbox>
+        </Grid>
+      </Border>
+
+      <!--  Правая панель ввода ссылки и выбора параметров на гибкой сетке Grid  -->
+      <Grid Grid.Column="1"
+            Margin="5,2">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="Auto"/>
+          <!-- 0: Меню и версия -->
+          <RowDefinition Height="Auto"/>
+          <!-- 1: URL, Name, Version -->
+          <RowDefinition Height="Auto"/>
+          <!-- 2: Тип (Watch face / App / None) -->
+          <RowDefinition Height="*"/>
+          <!-- 3: Блок моделей (занимает всё оставшееся пространство и масштабируется) -->
+          <RowDefinition Height="Auto"/>
+          <!-- 4: Кнопки в самом низу -->
+        </Grid.RowDefinitions>
+
+        <!-- Строка 0: Верхнее меню и версия приложения -->
+        <Grid Grid.Row="0"
+              Margin="0,0,0,5">
+          <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Left">
+            <Button Content="{DynamicResource Lang_Theme}"
+                    Style="{StaticResource MenuButtonStyle}"
+                    Click="ThemeButton_Click"
+                    d:Content="Theme">
+              <Button.ContextMenu>
+                <ContextMenu>
+                  <MenuItem Header="{DynamicResource Lang_LightTheme}"
+                            Click="MenuItem_LightTheme_Click"/>
+                  <MenuItem Header="{DynamicResource Lang_DarkTheme}"
+                            Click="MenuItem_DarkTheme_Click"/>
+                </ContextMenu>
+              </Button.ContextMenu>
+            </Button>
+            <Button Content="{DynamicResource Lang_Language}"
+                    Style="{StaticResource MenuButtonStyle}"
+                    Click="LanguageButton_Click"
+                    d:Content="Language">
+              <Button.ContextMenu>
+                <ContextMenu x:Name="LanguageContextMenu"/>
+              </Button.ContextMenu>
+            </Button>
+            <Button Content="{DynamicResource Lang_About}"
+                    Click="MenuItem_About_Click"
+                    Style="{StaticResource MenuButtonStyle}"
+                    d:Content="About">
+            </Button>
+          </StackPanel>
+          <TextBlock x:Name="VersionText"
+                     HorizontalAlignment="Right"
+                     VerticalAlignment="Center"
+                     Margin="0,0,5,0"
+                     FontSize="11"
+                     Foreground="{DynamicResource TextForeground}"
+                     Opacity="0.75"
+                     Text="v 0.1"/>
+        </Grid>
+
+        <!-- Строка 1: Поле ввода URL Ссылки, полей Name и Version -->
+        <Border Grid.Row="1"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource BorderBrush}"
+                Background="{DynamicResource WindowBackground}"
+                CornerRadius="5"
+                Padding="3"
+                Margin="0,0,5,0">
+          <StackPanel Margin="5,0">
+            <TextBlock Text="{DynamicResource Lang_UrlLabel}"
+                       Style="{StaticResource InputLabelStyle}"/>
+            <Grid Margin="0,0,0,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <Border Grid.Column="0"
+                      Style="{StaticResource InputBorderStyle}"
+                      Margin="0,0,5,0">
+                <Grid>
+                  <TextBox x:Name="UrlTextBox"
+                           Style="{StaticResource PlaceholderTextBoxStyle}"
+                           Tag="{DynamicResource Lang_UrlPlaceholder}"
+                           TextChanged="UrlTextBox_TextChanged"/>
+                </Grid>
+              </Border>
+              <Image x:Name="StatusIcon"
+                     Grid.Column="1"
+                     Source="/Assets/Icons/close.png"
+                     Width="20"
+                     Height="20"
+                     VerticalAlignment="Center"/>
+            </Grid>
+            <Grid Margin="0,2">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <StackPanel Grid.Column="0"
+                          Margin="0,0,10,0">
+                <TextBlock Text="{DynamicResource Lang_NameLabel}"
+                           Style="{StaticResource InputLabelStyle}"/>
+                <Border Style="{StaticResource InputBorderStyle}"
+                        Margin="0,0,0,5">
+                  <Grid>
+                    <TextBox x:Name="NameTextBox"
+                             Style="{StaticResource PlaceholderTextBoxStyle}"
+                             Tag="{DynamicResource Lang_NamePlaceholder}"
+                             TextChanged="InputField_Changed"/>
+                  </Grid>
+                </Border>
+              </StackPanel>
+              <StackPanel Grid.Column="1"
+                          MinWidth="90">
+                <TextBlock Text="{DynamicResource Lang_VersionLabel}"
+                           Style="{StaticResource InputLabelStyle}"/>
+                <Border Style="{StaticResource InputBorderStyle}">
+                  <StackPanel Orientation="Horizontal"
+                              VerticalAlignment="Center">
+                    <TextBlock Text="v."
+                               Foreground="{DynamicResource TextForeground}"
+                               Opacity="0.5"
+                               VerticalAlignment="Center"
+                               Margin="5,0,1,0"/>
+                    <TextBox x:Name="VersionTextBox"
+                             Style="{StaticResource InputTextBoxStyle}"
+                             MinWidth="60"
+                             TextChanged="InputField_Changed"/>
+                  </StackPanel>
+                </Border>
+              </StackPanel>
+            </Grid>
+          </StackPanel>
+        </Border>
+
+        <!-- Строка 2: Блок выбора типа (Watch face / App / None) -->
+        <Border Grid.Row="2"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource BorderBrush}"
+                Background="{DynamicResource WindowBackground}"
+                CornerRadius="5"
+                Padding="3"
+                Margin="0,11,5,0">
+          <StackPanel Margin="5,0">
+            <Border Background="{DynamicResource WindowBackground}"
+                    HorizontalAlignment="Left"
+                    Margin="-4,-13,5,5"
+                    Padding="4,0">
+              <TextBlock Text="{DynamicResource Lang_TypeLabel}"
+                         Style="{StaticResource InputLabelStyle}"
+                         Margin="0"/>
+            </Border>
+            <UniformGrid Rows="1"
+                         Margin="0,5,0,8"
+                         VerticalAlignment="Center">
+              <RadioButton x:Name="RadioWatchFace"
+                           Content="{DynamicResource Lang_WatchFace}"
+                           GroupName="TypeGroup"
+                           Foreground="{DynamicResource TextForeground}"
+                           Style="{StaticResource LargeBulletRadioButtonStyle}"
+                           FontSize="14"
+                           Checked="RadioType_Checked"/>
+              <RadioButton x:Name="RadioApp"
+                           Content="{DynamicResource Lang_App}"
+                           GroupName="TypeGroup"
+                           Foreground="{DynamicResource TextForeground}"
+                           Style="{StaticResource LargeBulletRadioButtonStyle}"
+                           FontSize="14"
+                           Checked="RadioType_Checked"/>
+              <RadioButton x:Name="RadioNone"
+                           Content="{DynamicResource Lang_None}"
+                           GroupName="TypeGroup"
+                           IsChecked="True"
+                           Foreground="{DynamicResource TextForeground}"
+                           Style="{StaticResource LargeBulletRadioButtonStyle}"
+                           FontSize="14"
+                           Checked="RadioType_Checked"/>
+            </UniformGrid>
+          </StackPanel>
+        </Border>
+
+        <!-- Строка 3: Блок выбора Разрешения и моделей часов (Растягивается динамически) -->
+        <Border Grid.Row="3"
+                BorderThickness="1"
+                BorderBrush="{DynamicResource BorderBrush}"
+                Background="{DynamicResource WindowBackground}"
+                CornerRadius="5"
+                Padding="3"
+                Margin="0,11,5,0">
+          <DockPanel LastChildFill="True"
+                     Margin="5,-13,5,5">
+            <Border Background="{DynamicResource WindowBackground}"
+                    HorizontalAlignment="Left"
+                    DockPanel.Dock="Top"
+                    Margin="-4,0,0,5"
+                    Padding="4,0">
+              <TextBlock DockPanel.Dock="Top"
+                         Text="{DynamicResource Lang_Models}"
+                         Style="{StaticResource InputLabelStyle}"
+                         Margin="0"/>
+            </Border>
+            <!-- Выбор разрешения -->
+            <Grid DockPanel.Dock="Top"
+                  Margin="0,2,0,5">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="135"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
+              <TextBlock Text="{DynamicResource Lang_Resolution}"
+                         Style="{StaticResource InputLabelStyle}"
+                         VerticalAlignment="Center"
+                         Margin="0,0,5,0"/>
+              <Border Grid.Column="1"
+                      Style="{StaticResource InputBorderStyle}"
+                      VerticalAlignment="Center">
+                <ComboBox x:Name="ResolutionComboBox"
+                          Style="{StaticResource ComboBoxStyle}"
+                          Background="Transparent"
+                          SelectionChanged="ResolutionComboBox_SelectionChanged"
+                          MaxDropDownHeight="195"/>
+              </Border>
+            </Grid>
+
+            <!-- Список моделей с динамическим скроллером на всю оставшуюся высоту -->
+            <Border Style="{StaticResource CardStyle}"
+                    Margin="0,3,0,0"
+                    Padding="0">
+              <DockPanel LastChildFill="True">
+                <!-- Шапка блока моделей: используем Grid для размещения заголовка и GroupBox в одной строке -->
+                <Grid DockPanel.Dock="Top"
+                      Margin="10,3,10,0">
+                  <Grid.ColumnDefinitions>
+                    <!-- Первая колонка под текст "Выберите модели" -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Вторая колонка под интерактивный GroupBox "Отметить все" -->
+                    <ColumnDefinition Width="Auto"/>
+                  </Grid.ColumnDefinitions>
+                  <TextBlock Grid.Column="0"
+                             Text="{DynamicResource Lang_SelectModels}"
+                             Style="{StaticResource InputLabelStyle}"
+                             Margin="10,3"/>
+                  <!-- Интерактивная кнопка с иконкой множественного выбора -->
+                  <GroupBox x:Name="SelectAllGroupBox"
+                            Grid.Column="1"
+                            Style="{StaticResource ClickableGroupBoxStyle}"
+                            Height="26"
+                            MinWidth="170"
+                            Cursor="Hand"
+                            IsEnabled="False"
+                            Opacity="0.4"
+                            MouseLeftButtonUp="SelectAllGroupBox_MouseLeftButtonUp">
+                    <GroupBox.Header>
+                      <StackPanel Orientation="Horizontal"
+                                  VerticalAlignment="Center">
+                        <!-- Векторный контейнер значка (22х22 px) -->
+                        <Viewbox Width="20"
+                                 Height="20"
+                                 Margin="0,0,6,0"
+                                 VerticalAlignment="Center">
+                          <Grid Width="22"
+                                Height="22">
+                            <!-- 1. Нижний уголок (в левом нижнем углу) -->
+                            <Path Data="M 1,5 L 1,19 C 1,20.1 1.9,21 3,21 L 17,21"
+                                  Stroke="{DynamicResource TextForeground}"
+                                  StrokeThickness="1.5"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round"
+                                  StrokeLineJoin="Round"/>
+                            <!-- 2. Верхний квадрат (в правом верхнем углу) -->
+                            <Border Margin="4,0,0,4"
+                                    Width="18"
+                                    Height="18"
+                                    BorderBrush="{DynamicResource TextForeground}"
+                                    BorderThickness="1.5"
+                                    CornerRadius="3"
+                                    Background="Transparent"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top">
+                              <!-- 3. Галочка (отображается ТОЛЬКО если выбраны ВСЕ чек-боксы) -->
+                              <Path x:Name="SelectAllCheckMark"
+                                    Data="M 2 5 L 5 8 L 9 2"
+                                    Stroke="{DynamicResource TextForeground}"
+                                    StrokeThickness="2"
+                                    StrokeStartLineCap="Round"
+                                    StrokeEndLineCap="Round"
+                                    StrokeLineJoin="Round"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Visibility="Collapsed"/>
+                            </Border>
+                          </Grid>
+                        </Viewbox>
+                        <!-- Текст кнопки (Отметить все / Снять все отметки) -->
+                        <TextBlock x:Name="SelectAllTextblock"
+                                   Foreground="{DynamicResource TextForeground}"
+                                   Text="{DynamicResource Lang_CheckAll}"
+                                   VerticalAlignment="Center"/>
+                      </StackPanel>
+                    </GroupBox.Header>
+                  </GroupBox>
+                </Grid>
+                <!-- Разделительная линия под шапкой -->
+                <Border DockPanel.Dock="Top"
+                        BorderThickness="0,1,0,0"
+                        BorderBrush="{DynamicResource BorderBrush}"
+                        Margin="-1,3,-1,0"/>
+
+                <ScrollViewer Style="{StaticResource SlimScrollViewerStyle}"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Margin="4,4,0,0">
+                  <ItemsControl x:Name="ModelsItemsControl"
+                                Margin="0,0,0,4">
+                    <ItemsControl.ItemsPanel>
+                      <ItemsPanelTemplate>
+                        <UniformGrid Columns="2"
+                                     VerticalAlignment="Top"/>
+                      </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                      <DataTemplate>
+                        <CheckBox Content="{Binding Name}"
+                                  Tag="{Binding}"
+                                  Style="{StaticResource CustomCheckBoxStyle}"
+                                  Margin="0,5"
+                                  Checked="ModelCheckBox_Changed"
+                                  Unchecked="ModelCheckBox_Changed"/>
+                      </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                  </ItemsControl>
+                </ScrollViewer>
+              </DockPanel>
+            </Border>
+          </DockPanel>
+        </Border>
+
+        <!-- Строка 4: Кнопки в самом низу -->
+        <UniformGrid Grid.Row="4"
+                     Rows="1"
+                     Margin="0,8,5,10"
+                     Height="35">
+          <Button x:Name="SaveButton"
+                  IsEnabled="False"
+                  Style="{DynamicResource ActionButtonStyle}"
+                  Margin="0,0,10,0"
+                  Click="SaveButton_Click">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center">
+              <Rectangle Width="18"
+                         Height="18"
+                         Fill="{DynamicResource TextForeground}"
+                         Opacity="0.8">
+                <Rectangle.OpacityMask>
+                  <ImageBrush ImageSource="/Assets/Icons/save.png"/>
+                </Rectangle.OpacityMask>
+              </Rectangle>
+              <TextBlock Text="{DynamicResource Lang_SaveButton}"
+                         Margin="8,0,0,0"/>
+            </StackPanel>
+          </Button>
+          <Button Style="{DynamicResource ActionButtonStyle}"
+                  Margin="10,0,0,0"
+                  Click="ClearButton_Click">
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center">
+              <Rectangle Width="18"
+                         Height="18"
+                         Fill="{DynamicResource TextForeground}"
+                         Opacity="0.8">
+                <Rectangle.OpacityMask>
+                  <ImageBrush ImageSource="/Assets/Icons/clear.png"/>
+                </Rectangle.OpacityMask>
+              </Rectangle>
+              <TextBlock Text="{DynamicResource Lang_ClearButton}"
+                         Margin="8,0,0,0"/>
+            </StackPanel>
+          </Button>
+        </UniformGrid>
+      </Grid>
+    </Grid>
+  </Grid>
+</Window>

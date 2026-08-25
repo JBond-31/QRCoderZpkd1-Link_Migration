@@ -1,0 +1,101 @@
+<Window x:Class="QRCoderZpkd1_Link.ToastNotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="440"
+        SizeToContent="Height"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ShowInTaskbar="False"
+        ShowActivated="False"
+        Topmost="True"
+        ResizeMode="NoResize">
+  <!-- Основная карточка Toast. Все цвета берутся из текущей темы приложения через DynamicResource. -->
+  <Border Background="{DynamicResource PanelBackground}"
+          BorderBrush="{DynamicResource BorderBrush}"
+          BorderThickness="1"
+          CornerRadius="10"
+          Padding="14">
+    <Grid>
+      <!-- Верхняя строка: слева заголовок, справа кнопка закрытия. -->
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+      </Grid.RowDefinitions>
+      <Grid Grid.Row="0"
+            Margin="0,0,0,10">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <!-- Заголовок Toast. Используем основной цвет текста текущей темы. -->
+        <TextBlock Grid.Column="0"
+                   Text="{Binding ToastTitle}"
+                   FontSize="15"
+                   FontWeight="Bold"
+                   Foreground="{DynamicResource TextForeground}"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap"/>
+        <!-- Кнопка ручного закрытия. Собственный ControlTemplate гарантирует, что символ × будет видимым независимо от стандартного WPF-шаблона кнопки. -->
+        <Button Grid.Column="1"
+                Width="30"
+                Height="30"
+                Margin="10,0,0,0"
+                Padding="0"
+                BorderThickness="0"
+                Background="Transparent"
+                Foreground="{DynamicResource TextForeground}"
+                Cursor="Hand"
+                Click="CloseButton_Click"
+                ToolTip="Close">
+          <Button.Template>
+            <ControlTemplate TargetType="Button">
+              <Border x:Name="CloseBorder"
+                      Background="{DynamicResource MenuHoverBrush}"
+                      CornerRadius="6"
+                      Opacity="0.0">
+                <TextBlock Text="×"
+                           Foreground="{DynamicResource TextForeground}"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0,-2,0,0"/>
+              </Border>
+              <ControlTemplate.Triggers>
+                <!-- При наведении кнопка становится видимой. -->
+                <Trigger Property="IsMouseOver"
+                         Value="True">
+                  <Setter TargetName="CloseBorder"
+                          Property="Opacity"
+                          Value="1"/>
+                </Trigger>
+                <!-- В обычном состоянии кнопка тоже видима, но менее заметна. -->
+                <Trigger Property="IsMouseOver"
+                         Value="False">
+                  <Setter TargetName="CloseBorder"
+                          Property="Opacity"
+                          Value="0.65"/>
+                </Trigger>
+                <!-- При нажатии немного уменьшаем прозрачность. -->
+                <Trigger Property="IsPressed"
+                         Value="True">
+                  <Setter TargetName="CloseBorder"
+                          Property="Opacity"
+                          Value="0.4"/>
+                </Trigger>
+              </ControlTemplate.Triggers>
+            </ControlTemplate>
+          </Button.Template>
+        </Button>
+      </Grid>
+      <!-- Основной текст предупреждения. -->
+      <TextBlock Grid.Row="1"
+                 Text="{Binding ToastMessage}"
+                 FontSize="13"
+                 Foreground="{DynamicResource TextForeground}"
+                 TextWrapping="Wrap"
+                 MaxWidth="400"/>
+    </Grid>
+  </Border>
+</Window>

@@ -1,0 +1,162 @@
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+  <!-- Language -->
+  <sys:String x:Key="Lang_WindowTitle"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    QRCoderZpkd1-Link
+  </sys:String>
+
+  <sys:String x:Key="Lang_Theme"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Theme
+  </sys:String>
+
+  <sys:String x:Key="Lang_LightTheme"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    LightTheme
+  </sys:String>
+
+  <sys:String x:Key="Lang_DarkTheme"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    DarkTheme
+  </sys:String>
+
+  <sys:String x:Key="Lang_Language"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Language
+  </sys:String>
+
+  <sys:String x:Key="Lang_About"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    About
+  </sys:String>
+
+  <sys:String x:Key="Lang_AboutDescription"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Developed for installing applications or watch faces on Amazfit watches with Zepp OS via QR code.
+  </sys:String>
+
+  <sys:String x:Key="Lang_BusinessLogic"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Business logic:
+  </sys:String>
+
+  <sys:String x:Key="Lang_UiUxDesign"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    UI/UX Design:
+  </sys:String>
+
+  <sys:String x:Key="Lang_UrlLabel"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    URL Link
+  </sys:String>
+
+  <sys:String x:Key="Lang_UrlPlaceholder"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Insert the GitHub link
+  </sys:String>
+
+  <sys:String x:Key="Lang_NameLabel"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Name
+  </sys:String>
+
+  <sys:String x:Key="Lang_NamePlaceholder"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Name
+  </sys:String>
+
+  <sys:String x:Key="Lang_VersionLabel"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Version
+  </sys:String>
+
+  <sys:String x:Key="Lang_Version"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Version
+  </sys:String>
+
+  <sys:String x:Key="Lang_TypeLabel"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Type:
+  </sys:String>
+
+  <sys:String x:Key="Lang_WatchFace"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    WatchFace
+  </sys:String>
+
+  <sys:String x:Key="Lang_App"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    App
+  </sys:String>
+
+  <sys:String x:Key="Lang_None"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    None
+  </sys:String>
+
+  <sys:String x:Key="Lang_Models"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Models
+  </sys:String>
+
+  <sys:String x:Key="Lang_Resolution"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Resolution
+  </sys:String>
+
+  <sys:String x:Key="Lang_CheckAll"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Check All
+  </sys:String>
+
+  <sys:String x:Key="Lang_UncheckAll"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Uncheck All
+  </sys:String>
+
+  <sys:String x:Key="Lang_ResolutionPlaceholder"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Select resolution...
+  </sys:String>
+
+  <sys:String x:Key="Lang_Select Models"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Select Models
+  </sys:String>
+
+  <sys:String x:Key="Lang_SaveButton"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Save QR-cod
+  </sys:String>
+
+  <sys:String x:Key="Lang_SaveSuccessTitle"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Success
+  </sys:String>
+
+  <sys:String x:Key="Lang_SaveSuccessMessage"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    QR-code saved successfully!
+  </sys:String>
+
+  <sys:String x:Key="Lang_SaveErrorTitle"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Error
+  </sys:String>
+
+  <sys:String x:Key="Lang_SaveErrorMessage"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Error saving QR-code!
+  </sys:String>
+
+  <sys:String x:Key="Lang_ClearButton"
+              xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    Clear
+  </sys:String>
+
+</ResourceDictionary>

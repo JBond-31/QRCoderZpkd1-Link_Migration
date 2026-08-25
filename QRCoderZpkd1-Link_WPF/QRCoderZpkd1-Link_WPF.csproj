@@ -1,0 +1,76 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFrameworks>net10.0-windows;net472</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>QRCoderZpkd1-Link</AssemblyName>
+    <RootNamespace>QRCoderZpkd1_Link</RootNamespace>
+    <ApplicationIcon>..\Assets\Icons\logo_qr.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Assets\Language\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Language\%(Filename)%(Extension)</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Assets\Data\*.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>Data\%(Filename)%(Extension)</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Assets\**\*.*" Exclude="..\Assets\**\*.json">
+      <Link>Assets\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Resource>
+  </ItemGroup>
+
+  <!-- Общие настройки конфигурации Release -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>None</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <!-- Настройки исключительно для .NET 10 -->
+  <PropertyGroup
+    Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net10.0-windows'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+  </PropertyGroup>
+
+  <!-- Настройки исключительно для .NET Framework 4.7.2 -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Release' and '$(TargetFramework)' == 'net472'">
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>false</PublishSingleFile>
+  </PropertyGroup>
+
+  <!-- Цель для очистки PDB и формирования папки Libs для .NET Framework -->
+  <Target Name="CleanAndOrganizePublish" AfterTargets="Publish">
+    <PropertyGroup>
+      <PublishDirFullPath>$([System.IO.Path]::GetFullPath('$(PublishDir)'))</PublishDirFullPath>
+    </PropertyGroup>
+
+    <Delete Files="$(PublishDirFullPath)*.pdb" />
+
+    <MakeDir Directories="$(PublishDirFullPath)Libs" Condition="'$(TargetFramework)' == 'net472'" />
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'net472'">
+      <DllFilesToMove Include="$(PublishDirFullPath)*.dll"
+        Exclude="$(PublishDirFullPath)$(AssemblyName).dll" />
+    </ItemGroup>
+
+    <Move SourceFiles="@(DllFilesToMove)"
+      DestinationFolder="$(PublishDirFullPath)Libs"
+      Condition="'$(TargetFramework)' == 'net472' and Exists('%(FullPath)')" />
+  </Target>
+</Project>

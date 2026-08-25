@@ -1,0 +1,17 @@
+<Project>
+  <PropertyGroup>
+    <AppMajor>1</AppMajor>
+    <AppMinor>3</AppMinor>
+    <AppPatch>0</AppPatch>
+
+    <AppSuffix></AppSuffix>
+
+    <VersionPrefix>$(AppMajor).$(AppMinor).$(AppPatch)</VersionPrefix>
+    <Version>$(VersionPrefix).0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <InformationalVersion Condition="'$(AppSuffix)' != ''">v.$(VersionPrefix)-$(AppSuffix)</InformationalVersion>
+    <InformationalVersion Condition="'$(AppSuffix)' == ''">v.$(VersionPrefix)</InformationalVersion>
+  </PropertyGroup>
+</Project>

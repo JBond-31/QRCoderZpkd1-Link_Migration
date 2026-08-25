@@ -1,0 +1,16 @@
+<Application x:Class="QRCoderZpkd1_Link.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <!-- Эта строка меняет тему приложения по умолчанию Source="Styles/Themes/LightTheme.xaml" DarkTheme.xaml-->
+        <ResourceDictionary Source="Styles/Themes/DarkTheme.xaml"/>
+        <ResourceDictionary Source="Styles/Styles.xaml"/>
+        <!-- только для Designer -->
+        <ResourceDictionary Source="Styles/DesignerResources.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

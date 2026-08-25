@@ -1,0 +1,1457 @@
+{
+  "Active": {
+    "name": "Amazfit Active",
+    "designWidth": 390,
+    "deviceSource_ids": [
+      8323328,
+      8323329
+    ],
+    "cpuPlatform": "Apollo",
+    "screenType": "square",
+    "background": {
+      "w": 390,
+      "h": 450
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 198,
+        "h": 228
+      },
+      "scaling_1_0": {
+        "w": 392,
+        "h": 452
+      },
+      "scaling_1_5": {
+        "w": 587,
+        "h": 677
+      },
+      "scaling_2_0": {
+        "w": 781,
+        "h": 901
+      },
+      "scaling_2_5": {
+        "w": 976,
+        "h": 1126
+      }
+    },
+    "maskImage": "mask_gts_3.png",
+    "watchSkin": "",
+    "previewHeight": 306,
+    "colorScheme": 3,
+    "fixSize": false,
+    "versionOS": 4.0
+  },
+  "Active 2": {
+    "name": "Amazfit Active 2",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      8913152,
+      8913153,
+      8913155,
+      8913159,
+      10092800,
+      10092801,
+      10092803,
+      10092807
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_Active_2.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Active 2 (Square)": {
+    "name": "Amazfit Active 2 (Square)",
+    "designWidth": 390,
+    "deviceSource_ids": [
+      9830656,
+      9830657,
+      9830659
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "square",
+    "background": {
+      "w": 390,
+      "h": 450
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 198,
+        "h": 228
+      },
+      "scaling_1_0": {
+        "w": 392,
+        "h": 452
+      },
+      "scaling_1_5": {
+        "w": 587,
+        "h": 677
+      },
+      "scaling_2_0": {
+        "w": 781,
+        "h": 901
+      },
+      "scaling_2_5": {
+        "w": 976,
+        "h": 1126
+      }
+    },
+    "maskImage": "mask_gts_3.png",
+    "watchSkin": "WatchSkin_Active_2_Square.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Active 3 Premium": {
+    "name": "Amazfit Active 3 Premium",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      10944768,
+      10944769,
+      10944771,
+      10948867
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_Active_3_Premium.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Active Max": {
+    "name": "Amazfit Active Max",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      10813697,
+      10813699
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Active_Max.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Active Edge": {
+    "name": "Amazfit Active Edge",
+    "designWidth": 360,
+    "deviceSource_ids": [
+      8388864,
+      8388865
+    ],
+    "cpuPlatform": "Apollo",
+    "screenType": "round",
+    "background": {
+      "w": 360,
+      "h": 360
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 182,
+        "h": 182
+      },
+      "scaling_1_0": {
+        "w": 362,
+        "h": 362
+      },
+      "scaling_1_5": {
+        "w": 542,
+        "h": 542
+      },
+      "scaling_2_0": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_5": {
+        "w": 901,
+        "h": 901
+      }
+    },
+    "maskImage": "mask_active_edge.png",
+    "watchSkin": "",
+    "previewHeight": 243,
+    "colorScheme": 3,
+    "fixSize": false,
+    "versionOS": 3.5
+  },
+  "Amazfit Band 7": {
+    "name": "Amazfit Band 7",
+    "designWidth": 194,
+    "deviceSource_ids": [
+      252,
+      253,
+      254
+    ],
+    "cpuPlatform": "DIALOG",
+    "screenType": "bar",
+    "background": {
+      "w": 194,
+      "h": 368
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 100,
+        "h": 187
+      },
+      "scaling_1_0": {
+        "w": 196,
+        "h": 370
+      },
+      "scaling_1_5": {
+        "w": 293,
+        "h": 554
+      },
+      "scaling_2_0": {
+        "w": 389,
+        "h": 737
+      },
+      "scaling_2_5": {
+        "w": 486,
+        "h": 921
+      }
+    },
+    "maskImage": "mask_band_7.png",
+    "watchSkin": "WatchSkin_Amazfit_Band_7.json",
+    "previewHeight": 288,
+    "colorScheme": 2,
+    "fixSize": false,
+    "versionOS": 1.0
+  },
+  "Balance": {
+    "name": "Amazfit Balance",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      8519936,
+      8519937,
+      8519939
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Balance.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 4.0
+  },
+  "Balance 2": {
+    "name": "Amazfit Balance 2",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      9568512,
+      9568513,
+      9568515
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Balance_2.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Balance 3": {
+    "name": "Amazfit Balance 3",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      11141376,
+      11141377,
+      11141379,
+      11145472,
+      11145473,
+      11145475
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Balance_3.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 6.0
+  },
+  "Balance Ultra": {
+    "name": "Amazfit Balance Ultra",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      11075840,
+      11075841,
+      11092224,
+      11092225
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Balance_Ultra.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 6.0
+  },
+  "Bip 5": {
+    "name": "Amazfit Bip 5",
+    "designWidth": 320,
+    "deviceSource_ids": [
+      8454400,
+      8454401
+    ],
+    "cpuPlatform": "Apollo",
+    "screenType": "square",
+    "background": {
+      "w": 320,
+      "h": 380
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 163,
+        "h": 193
+      },
+      "scaling_1_0": {
+        "w": 322,
+        "h": 392
+      },
+      "scaling_1_5": {
+        "w": 482,
+        "h": 572
+      },
+      "scaling_2_0": {
+        "w": 641,
+        "h": 761
+      },
+      "scaling_2_5": {
+        "w": 801,
+        "h": 951
+      }
+    },
+    "maskImage": "mask_bip_5.png",
+    "watchSkin": "WatchSkin_Bip_5.json",
+    "previewHeight": 238,
+    "colorScheme": 3,
+    "fixSize": false,
+    "versionOS": 2.1
+  },
+  "Bip 5 Unity": {
+    "name": "Amazfit Bip 5 Unity",
+    "designWidth": 320,
+    "deviceSource_ids": [
+      8782081,
+      8782088,
+      8782089
+    ],
+    "cpuPlatform": "Apollo",
+    "screenType": "square",
+    "background": {
+      "w": 320,
+      "h": 380
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 163,
+        "h": 193
+      },
+      "scaling_1_0": {
+        "w": 322,
+        "h": 392
+      },
+      "scaling_1_5": {
+        "w": 482,
+        "h": 572
+      },
+      "scaling_2_0": {
+        "w": 641,
+        "h": 761
+      },
+      "scaling_2_5": {
+        "w": 801,
+        "h": 951
+      }
+    },
+    "maskImage": "mask_bip_5.png",
+    "watchSkin": "WatchSkin_Bip_5.json",
+    "previewHeight": 238,
+    "colorScheme": 3,
+    "fixSize": false,
+    "versionOS": 3.0
+  },
+  "Bip 6": {
+    "name": "Amazfit Bip 6",
+    "designWidth": 390,
+    "deviceSource_ids": [
+      9765120,
+      9765121,
+      10158337
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "square",
+    "background": {
+      "w": 390,
+      "h": 450
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 198,
+        "h": 228
+      },
+      "scaling_1_0": {
+        "w": 392,
+        "h": 452
+      },
+      "scaling_1_5": {
+        "w": 587,
+        "h": 677
+      },
+      "scaling_2_0": {
+        "w": 781,
+        "h": 901
+      },
+      "scaling_2_5": {
+        "w": 976,
+        "h": 1126
+      }
+    },
+    "maskImage": "mask_bip_6.png",
+    "watchSkin": "WatchSkin_Bip_6.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Bip Max": {
+    "name": "Amazfit Bip Max",
+    "designWidth": 432,
+    "deviceSource_ids": [
+      11206915
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "square",
+    "background": {
+      "w": 432,
+      "h": 514
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 219,
+        "h": 260
+      },
+      "scaling_1_0": {
+        "w": 434,
+        "h": 516
+      },
+      "scaling_1_5": {
+        "w": 650,
+        "h": 773
+      },
+      "scaling_2_0": {
+        "w": 865,
+        "h": 1029
+      },
+      "scaling_2_5": {
+        "w": 1081,
+        "h": 1286
+      }
+    },
+    "maskImage": "mask_bip_max.png",
+    "watchSkin": "WatchSkin_Bip_Max.json",
+    "previewHeight": 350,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Cheetah": {
+    "name": "Amazfit Cheetah",
+    "designWidth": 454,
+    "deviceSource_ids": [
+      8192256,
+      8192257
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 454,
+      "h": 454
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 456,
+        "h": 456
+      },
+      "scaling_1_5": {
+        "w": 683,
+        "h": 683
+      },
+      "scaling_2_0": {
+        "w": 909,
+        "h": 909
+      },
+      "scaling_2_5": {
+        "w": 1136,
+        "h": 1136
+      }
+    },
+    "maskImage": "mask_gtr_3.png",
+    "watchSkin": "WatchSkin_Cheetah.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "Cheetah Pro": {
+    "name": "Amazfit Cheetah Pro",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      8126720,
+      8126721
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Cheetah.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "Cheetah (Square)": {
+    "name": "Amazfit Cheetah (Square)",
+    "designWidth": 390,
+    "deviceSource_ids": [
+      8257793
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "square",
+    "background": {
+      "w": 390,
+      "h": 450
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 198,
+        "h": 228
+      },
+      "scaling_1_0": {
+        "w": 392,
+        "h": 452
+      },
+      "scaling_1_5": {
+        "w": 587,
+        "h": 677
+      },
+      "scaling_2_0": {
+        "w": 781,
+        "h": 901
+      },
+      "scaling_2_5": {
+        "w": 841,
+        "h": 961
+      }
+    },
+    "maskImage": "mask_gts_3.png",
+    "watchSkin": "WatchSkin_GTS_3.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "Cheetah 2 Pro": {
+    "name": "Amazfit Cheetah 2 Pro",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      11010304,
+      11010305,
+      11010307
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_Cheetah_2_Pro.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Cheetah 2 Ultra": {
+    "name": "Amazfit Cheetah 2 Ultra",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      9978112,
+      9978113
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_Cheetah_2_Ultra.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "Falcon": {
+    "name": "Amazfit Falcon",
+    "designWidth": 416,
+    "deviceSource_ids": [
+      414,
+      415
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 416,
+      "h": 416
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 211,
+        "h": 211
+      },
+      "scaling_1_0": {
+        "w": 418,
+        "h": 418
+      },
+      "scaling_1_5": {
+        "w": 626,
+        "h": 626
+      },
+      "scaling_2_0": {
+        "w": 833,
+        "h": 833
+      },
+      "scaling_2_5": {
+        "w": 1041,
+        "h": 1041
+      }
+    },
+    "maskImage": "mask_falcon.png",
+    "watchSkin": "WatchSkin_Falcon.json",
+    "previewHeight": 280,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "GTR 3": {
+    "name": "Amazfit GTR 3",
+    "designWidth": 454,
+    "deviceSource_ids": [
+      226,
+      227
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 454,
+      "h": 454
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 456,
+        "h": 456
+      },
+      "scaling_1_5": {
+        "w": 683,
+        "h": 683
+      },
+      "scaling_2_0": {
+        "w": 909,
+        "h": 909
+      },
+      "scaling_2_5": {
+        "w": 1136,
+        "h": 1136
+      }
+    },
+    "maskImage": "mask_gtr_3.png",
+    "watchSkin": "WatchSkin_GTR_3.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 1.0
+  },
+  "GTR 3 Pro": {
+    "name": "Amazfit GTR 3 Pro",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      229,
+      230,
+      242,
+      6095106
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_GTR_3_Pro.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 1.0
+  },
+  "GTR 4": {
+    "name": "Amazfit GTR 4",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      7930112,
+      7930113,
+      7864576,
+      7864577
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_GTR_4.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "GTR mini": {
+    "name": "Amazfit GTR Mini",
+    "designWidth": 416,
+    "deviceSource_ids": [
+      250,
+      251
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 416,
+      "h": 416
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 211,
+        "h": 211
+      },
+      "scaling_1_0": {
+        "w": 418,
+        "h": 418
+      },
+      "scaling_1_5": {
+        "w": 626,
+        "h": 626
+      },
+      "scaling_2_0": {
+        "w": 833,
+        "h": 833
+      },
+      "scaling_2_5": {
+        "w": 1041,
+        "h": 1041
+      }
+    },
+    "maskImage": "mask_falcon.png",
+    "watchSkin": "",
+    "previewHeight": 280,
+    "colorScheme": 3,
+    "fixSize": false,
+    "versionOS": 2.0
+  },
+  "GTS 3": {
+    "name": "Amazfit GTS 3",
+    "designWidth": 390,
+    "deviceSource_ids": [
+      224,
+      225
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "square",
+    "background": {
+      "w": 390,
+      "h": 450
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 198,
+        "h": 228
+      },
+      "scaling_1_0": {
+        "w": 392,
+        "h": 452
+      },
+      "scaling_1_5": {
+        "w": 587,
+        "h": 677
+      },
+      "scaling_2_0": {
+        "w": 781,
+        "h": 901
+      },
+      "scaling_2_5": {
+        "w": 976,
+        "h": 1126
+      }
+    },
+    "maskImage": "mask_gts_3.png",
+    "watchSkin": "WatchSkin_GTS_3.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 1.0
+  },
+  "GTS 4": {
+    "name": "Amazfit GTS 4",
+    "designWidth": 390,
+    "deviceSource_ids": [
+      7995648,
+      7995649
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "square",
+    "background": {
+      "w": 390,
+      "h": 450
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 198,
+        "h": 228
+      },
+      "scaling_1_0": {
+        "w": 392,
+        "h": 452
+      },
+      "scaling_1_5": {
+        "w": 587,
+        "h": 677
+      },
+      "scaling_2_0": {
+        "w": 781,
+        "h": 901
+      },
+      "scaling_2_5": {
+        "w": 976,
+        "h": 1126
+      }
+    },
+    "maskImage": "mask_gts_3.png",
+    "watchSkin": "WatchSkin_GTS_3.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "GTS 4 mini": {
+    "name": "GTS 4 mini",
+    "designWidth": 336,
+    "deviceSource_ids": [
+      246,
+      247
+    ],
+    "cpuPlatform": "DIALOG",
+    "screenType": "square",
+    "background": {
+      "w": 336,
+      "h": 384
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 171,
+        "h": 195
+      },
+      "scaling_1_0": {
+        "w": 338,
+        "h": 386
+      },
+      "scaling_1_5": {
+        "w": 506,
+        "h": 578
+      },
+      "scaling_2_0": {
+        "w": 673,
+        "h": 769
+      },
+      "scaling_2_5": {
+        "w": 841,
+        "h": 961
+      }
+    },
+    "maskImage": "mask_gts_4_mini.png",
+    "watchSkin": "WatchSkin_GTS_4_mini.json",
+    "previewHeight": 256,
+    "colorScheme": 2,
+    "fixSize": false,
+    "versionOS": 1.0
+  },
+  "T-Rex 2": {
+    "name": "Amazfit T-Rex 2",
+    "designWidth": 454,
+    "deviceSource_ids": [
+      418,
+      419
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 454,
+      "h": 454
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 456,
+        "h": 456
+      },
+      "scaling_1_5": {
+        "w": 683,
+        "h": 683
+      },
+      "scaling_2_0": {
+        "w": 909,
+        "h": 909
+      },
+      "scaling_2_5": {
+        "w": 1136,
+        "h": 1136
+      }
+    },
+    "maskImage": "mask_gtr_3.png",
+    "watchSkin": "WatchSkin_T_Rex_2.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 2.1
+  },
+  "T-Rex 3": {
+    "name": "Amazfit T-Rex 3",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      8716544,
+      8716545,
+      8716547
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_T_Rex_3.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 4.5
+  },
+  "T-Rex 3 Pro (44mm)": {
+    "name": "Amazfit T-Rex 3 Pro (44mm)",
+    "designWidth": 466,
+    "deviceSource_ids": [
+      10682624,
+      10682625,
+      10682627
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 466,
+      "h": 466
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 468,
+        "h": 468
+      },
+      "scaling_1_5": {
+        "w": 701,
+        "h": 701
+      },
+      "scaling_2_0": {
+        "w": 933,
+        "h": 933
+      },
+      "scaling_2_5": {
+        "w": 1166,
+        "h": 1166
+      }
+    },
+    "maskImage": "mask_gtr_4.png",
+    "watchSkin": "WatchSkin_T_Rex_3_Pro_44.json",
+    "previewHeight": 314,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "T-Rex 3 Pro (48mm)": {
+    "name": "Amazfit T-Rex 3 Pro (48mm)",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      10551552,
+      10551553,
+      10551555
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_T_Rex_3_Pro_48.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  },
+  "T-Rex Ultra": {
+    "name": "Amazfit T-Rex Ultra",
+    "designWidth": 454,
+    "deviceSource_ids": [
+      6553856,
+      6553857
+    ],
+    "cpuPlatform": "NXP",
+    "screenType": "round",
+    "background": {
+      "w": 454,
+      "h": 454
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 456,
+        "h": 456
+      },
+      "scaling_1_5": {
+        "w": 683,
+        "h": 683
+      },
+      "scaling_2_0": {
+        "w": 909,
+        "h": 909
+      },
+      "scaling_2_5": {
+        "w": 1136,
+        "h": 1136
+      }
+    },
+    "maskImage": "mask_gtr_3.png",
+    "watchSkin": "WatchSkin_T_Rex_2.json",
+    "previewHeight": 306,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 3.5
+  },
+  "T-Rex Ultra 2": {
+    "name": "Amazfit T-Rex Ultra 2",
+    "designWidth": 480,
+    "deviceSource_ids": [
+      10879233,
+      10879232,
+      10879235
+    ],
+    "cpuPlatform": "ZPS",
+    "screenType": "round",
+    "background": {
+      "w": 480,
+      "h": 480
+    },
+    "scaling": {
+      "scaling_0_5": {
+        "w": 230,
+        "h": 230
+      },
+      "scaling_1_0": {
+        "w": 482,
+        "h": 482
+      },
+      "scaling_1_5": {
+        "w": 722,
+        "h": 722
+      },
+      "scaling_2_0": {
+        "w": 961,
+        "h": 961
+      },
+      "scaling_2_5": {
+        "w": 1201,
+        "h": 1201
+      }
+    },
+    "maskImage": "mask_gtr_3_pro.png",
+    "watchSkin": "WatchSkin_T_Rex_Ultra_2.json",
+    "previewHeight": 324,
+    "colorScheme": 1,
+    "fixSize": true,
+    "versionOS": 5.0
+  }
+}

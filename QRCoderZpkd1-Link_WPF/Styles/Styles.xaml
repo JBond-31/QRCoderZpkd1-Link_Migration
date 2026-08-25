@@ -1,0 +1,590 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Стили текста для всего приложения -->
+  <Style TargetType="TextBlock">
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="FontSize"
+            Value="14"/>
+  </Style>
+
+  <!-- Стили для колонки предпросмотра -->
+  <!-- Стиль карточки предпросмотра -->
+  <Style x:Key="PreviewCardStyle"
+         TargetType="Border">
+    <Setter Property="Background"
+            Value="{DynamicResource PreviewBackground}"/>
+    <Setter Property="CornerRadius"
+            Value="20"/>
+    <Setter Property="BorderBrush"
+            Value="{DynamicResource BorderBrush}"/>
+    <Setter Property="BorderThickness"
+            Value="1"/>
+    <Setter Property="Padding"
+            Value="10"/>
+  </Style>
+
+  <!-- Стили для колонки ввода данных -->
+  <!-- Стили карточек для всего приложения -->
+  <Style x:Key="CardStyle"
+         TargetType="Border">
+    <Setter Property="Background"
+            Value="{DynamicResource PanelBackground}"/>
+    <Setter Property="CornerRadius"
+            Value="8"/>
+    <Setter Property="BorderBrush"
+            Value="{DynamicResource BorderBrush}"/>
+    <Setter Property="BorderThickness"
+            Value="1"/>
+    <Setter Property="Padding"
+            Value="10"/>
+  </Style>
+
+  <!-- Стили полей ввода для всего приложения -->
+  <!-- Стиль пунктов меню -->
+  <Style x:Key="MenuButtonStyle"
+         TargetType="Button">
+    <Setter Property="Background"
+            Value="Transparent"/>
+    <Setter Property="Width"
+            Value="115"/>
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="Padding"
+            Value="0, 5"/>
+    <Setter Property="BorderThickness"
+            Value="0"/>
+    <Setter Property="Cursor"
+            Value="Hand"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border x:Name="border"
+                  Background="{TemplateBinding Background}"
+                  CornerRadius="4"
+                  Padding="{TemplateBinding Padding}">
+            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+              <Setter TargetName="border"
+                      Property="Background"
+                      Value="{DynamicResource MenuHoverBrush}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль выпадающих пунктов меню -->
+  <Style TargetType="ContextMenu">
+    <Setter Property="OverridesDefaultStyle"
+            Value="True"/>
+    <Setter Property="SnapsToDevicePixels"
+            Value="True"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ContextMenu">
+          <Border Background="{DynamicResource PanelBackground}"
+                  BorderBrush="{DynamicResource BorderBrush}"
+                  BorderThickness="1"
+                  CornerRadius="4"
+                  Effect="{x:Null}">
+            <ItemsPresenter Margin="2"/>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль выпадающих пунктов подменю -->
+  <Style TargetType="MenuItem">
+    <Setter Property="OverridesDefaultStyle"
+            Value="True"/>
+    <Setter Property="Background"
+            Value="Transparent"/>
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="Padding"
+            Value="10,5"/>
+    <Setter Property="Width"
+            Value="150"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="MenuItem">
+          <Border x:Name="Border"
+                  Background="{TemplateBinding Background}"
+                  Padding="{TemplateBinding Padding}"
+                  CornerRadius="2">
+            <ContentPresenter ContentSource="Header"
+                              VerticalAlignment="Center"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+              <Setter TargetName="Border"
+                      Property="Background"
+                      Value="{DynamicResource BorderBrush}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль названия поля ввода -->
+  <Style x:Key="InputLabelStyle"
+         TargetType="TextBlock">
+    <Setter Property="Margin"
+            Value="0,5,0,3"/>
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="FontSize"
+            Value="14"/>
+    <Setter Property="Opacity"
+            Value="0.8"/>
+  </Style>
+
+  <!-- Стиль оформления самого поля ввода -->
+  <Style x:Key="InputBorderStyle"
+         TargetType="Border">
+    <Setter Property="Background"
+            Value="{DynamicResource PanelBackground}"/>
+    <Setter Property="BorderBrush"
+            Value="{DynamicResource BorderBrush}"/>
+    <Setter Property="BorderThickness"
+            Value="1"/>
+    <Setter Property="CornerRadius"
+            Value="4"/>
+    <Setter Property="Height"
+            Value="30"/>
+    <Setter Property="Padding"
+            Value="5,0"/>
+  </Style>
+
+  <!-- Стиль текста внутри поля ввода -->
+  <Style x:Key="InputTextBoxStyle"
+         TargetType="TextBox">
+    <Setter Property="Background"
+            Value="Transparent"/>
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="BorderThickness"
+            Value="0"/>
+    <Setter Property="VerticalAlignment"
+            Value="Center"/>
+    <Setter Property="FontSize"
+            Value="13"/>
+    <Setter Property="SelectionBrush"
+            Value="{DynamicResource AccentBrush}"/>
+    <Setter Property="CaretBrush"
+            Value="{DynamicResource TextForeground}"/>
+  </Style>
+
+  <!-- Стиль Placeholder для внутренней части поля ввода -->
+  <Style x:Key="PlaceholderTextBoxStyle"
+         TargetType="TextBox"
+         BasedOn="{StaticResource InputTextBoxStyle}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="TextBox">
+          <Grid>
+            <ScrollViewer x:Name="PART_ContentHost"
+                          VerticalContentAlignment="Center"/>
+
+            <TextBlock x:Name="PlaceholderText"
+                       Text="{TemplateBinding Tag}"
+                       Foreground="{DynamicResource TextForeground}"
+                       Opacity="0.6"
+                       VerticalAlignment="Center"
+                       Margin="5,0,0,0"
+                       IsHitTestVisible="False"
+                       Visibility="Collapsed"/>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <Trigger Property="Text"
+                     Value="">
+              <Setter TargetName="PlaceholderText"
+                      Property="Visibility"
+                      Value="Visible"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль для увеличенных радиокнопок -->
+  <Style x:Key="LargeBulletRadioButtonStyle"
+         TargetType="RadioButton">
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="VerticalContentAlignment"
+            Value="Center"/>
+    <Setter Property="FontSize"
+            Value="14"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="RadioButton">
+          <!-- Контейнер для выравнивания -->
+          <StackPanel Orientation="Horizontal"
+                      VerticalAlignment="Center">
+            <!-- Сам кружок (Bullet) -->
+            <Border Width="18"
+                    Height="18"
+                    CornerRadius="9"
+                    BorderThickness="1"
+                    BorderBrush="{DynamicResource AccentBrush}"
+                    Background="{DynamicResource PanelBackground}"
+                    VerticalAlignment="Center">
+              <!-- Внутренняя точка, которая появляется при выборе -->
+              <Ellipse x:Name="OptionMark"
+                       Width="8"
+                       Height="8"
+                       Fill="{DynamicResource AccentBrush}"
+                       Visibility="Collapsed"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+            </Border>
+            <!-- Текст (он остается стандартным) -->
+            <ContentPresenter Margin="5,0,0,0"
+                              VerticalAlignment="Center"
+                              Opacity="0.8"
+                              TextElement.Foreground="{TemplateBinding Foreground}"/>
+          </StackPanel>
+          <ControlTemplate.Triggers>
+            <!-- Логика выбора: показываем точку, если IsChecked=True -->
+            <Trigger Property="IsChecked"
+                     Value="True">
+              <Setter TargetName="OptionMark"
+                      Property="Visibility"
+                      Value="Visible"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль для ComboBox с поддержкой выпадающего окна (Popup) -->
+  <Style x:Key="ComboBoxStyle"
+         TargetType="ComboBox">
+    <Setter Property="Background"
+            Value="Transparent"/>
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="BorderThickness"
+            Value="0"/>
+    <Setter Property="Padding"
+            Value="5,0"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ComboBox">
+          <!-- Основной контейнер -->
+          <Grid>
+            <Border Background="{TemplateBinding Background}"
+                    CornerRadius="4">
+              <Grid>
+                <!-- Кнопка-обертка для открытия списка -->
+                <ToggleButton x:Name="ToggleButton"
+                              Focusable="false"
+                              IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              ClickMode="Press"
+                              Background="Transparent"
+                              BorderThickness="0"
+                              HorizontalContentAlignment="Stretch">
+                  <ToggleButton.Template>
+                    <ControlTemplate TargetType="ToggleButton">
+                      <Border Background="Transparent"
+                              SnapsToDevicePixels="true"/>
+                    </ControlTemplate>
+                  </ToggleButton.Template>
+                </ToggleButton>
+                <!-- Текст внутри -->
+                <ContentPresenter Content="{TemplateBinding SelectionBoxItem}"
+                                  VerticalAlignment="Center"
+                                  Margin="5,0,25,0"
+                                  Opacity="0.5"
+                                  IsHitTestVisible="False"/>
+                <!-- Векторная стрелка (нарисована кодом) -->
+                <Path x:Name="Arrow"
+                      Data="M 0 0 L 4 4 L 8 0"
+                      Stroke="{DynamicResource TextForeground}"
+                      StrokeThickness="1.5"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Margin="0,0,10,0"
+                      IsHitTestVisible="False">
+                  <Path.RenderTransform>
+                    <RotateTransform Angle="0"
+                                     CenterX="4"
+                                     CenterY="2"/>
+                  </Path.RenderTransform>
+                </Path>
+              </Grid>
+            </Border>
+            <!-- Всплывающее окно со списком элементов (теперь элементы будут отрисовываться) -->
+            <Popup x:Name="PART_Popup"
+                   AllowsTransparency="True"
+                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                   Placement="Bottom"
+                   PopupAnimation="Fade">
+              <Border x:Name="DropDownBorder"
+                      Background="{DynamicResource WindowBackground}"
+                      BorderBrush="{DynamicResource BorderBrush}"
+                      BorderThickness="1"
+                      CornerRadius="4"
+                      MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                      MinWidth="{TemplateBinding ActualWidth}">
+                <ScrollViewer Margin="1"
+                              SnapsToDevicePixels="True"
+                              Style="{DynamicResource SlimScrollViewerStyle}"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled">
+                  <ItemsPresenter/>
+                </ScrollViewer>
+              </Border>
+            </Popup>
+          </Grid>
+          <ControlTemplate.Triggers>
+            <!-- Анимация поворота стрелки при открытии -->
+            <Trigger Property="IsDropDownOpen"
+                     Value="true">
+              <Setter TargetName="Arrow"
+                      Property="RenderTransform">
+                <Setter.Value>
+                  <RotateTransform Angle="180"
+                                   CenterX="4"
+                                   CenterY="2"/>
+                </Setter.Value>
+              </Setter>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль для пунктов выпадающего списка (ComboBoxItem) -->
+  <Style TargetType="ComboBoxItem">
+    <Setter Property="OverridesDefaultStyle"
+            Value="True"/>
+    <Setter Property="Background"
+            Value="Transparent"/>
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="Padding"
+            Value="10,5"/>
+    <Setter Property="Cursor"
+            Value="Hand"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ComboBoxItem">
+          <Border x:Name="Border"
+                  Background="{TemplateBinding Background}"
+                  Padding="{TemplateBinding Padding}"
+                  CornerRadius="2"
+                  Margin="2,1">
+            <ContentPresenter VerticalAlignment="Center"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <!-- Цвет при наведении курсора -->
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+              <Setter TargetName="Border"
+                      Property="Background"
+                      Value="{DynamicResource BorderBrush}"/>
+            </Trigger>
+            <!-- Цвет выбранного элемента -->
+            <Trigger Property="IsSelected"
+                     Value="True">
+              <Setter TargetName="Border"
+                      Property="Background"
+                      Value="{DynamicResource BorderBrush}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль для CheckBox, соответствующий общему дизайну -->
+  <Style x:Key="CustomCheckBoxStyle"
+         TargetType="CheckBox">
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="VerticalContentAlignment"
+            Value="Center"/>
+    <Setter Property="FontSize"
+            Value="13"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="CheckBox">
+          <StackPanel Orientation="Horizontal">
+            <!-- Квадрат чекбокса -->
+            <Border Width="15"
+                    Height="15"
+                    Background="{DynamicResource PanelBackground}"
+                    BorderBrush="{DynamicResource TextForeground}"
+                    BorderThickness="1"
+                    CornerRadius="2">
+              <Path x:Name="CheckMark"
+                    Data="M 2 5 L 5 8 L 9 2"
+                    Stroke="{DynamicResource TextForeground}"
+                    StrokeThickness="2.2"
+                    Visibility="Collapsed"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </Border>
+            <!-- Текст -->
+            <ContentPresenter Margin="1,0,0,0"
+                              VerticalAlignment="Center"/>
+          </StackPanel>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked"
+                     Value="True">
+              <Setter TargetName="CheckMark"
+                      Property="Visibility"
+                      Value="Visible"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Тонкий кастомный стиль для ScrollViewer (без лишних стрелок, в стиле приложения) -->
+  <Style x:Key="SlimScrollViewerStyle"
+         TargetType="ScrollViewer">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ScrollViewer">
+          <Grid Background="Transparent">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <!-- Содержимое прокрутки -->
+            <ScrollContentPresenter Grid.Column="0"/>
+            <!-- Вертикальная полоса прокрутки -->
+            <ScrollBar x:Name="PART_VerticalScrollBar"
+                       Grid.Column="1"
+                       Value="{TemplateBinding VerticalOffset}"
+                       Maximum="{TemplateBinding ScrollableHeight}"
+                       ViewportSize="{TemplateBinding ViewportHeight}"
+                       Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                       Width="6"
+                       Background="Transparent"
+                       Margin="0,4">
+              <ScrollBar.Template>
+                <ControlTemplate TargetType="ScrollBar">
+                  <Grid Background="Transparent"
+                        Width="6">
+                    <Track x:Name="PART_Track"
+                           IsDirectionReversed="True">
+                      <Track.DecreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.LineUpCommand"
+                                      Background="Transparent"
+                                      BorderThickness="0"/>
+                      </Track.DecreaseRepeatButton>
+                      <Track.Thumb>
+                        <Thumb>
+                          <Thumb.Template>
+                            <ControlTemplate TargetType="Thumb">
+                              <Border Background="{DynamicResource TextForeground}"
+                                      CornerRadius="3"
+                                      Opacity="0.7"/>
+                            </ControlTemplate>
+                          </Thumb.Template>
+                        </Thumb>
+                      </Track.Thumb>
+                      <Track.IncreaseRepeatButton>
+                        <RepeatButton Command="ScrollBar.LineDownCommand"
+                                      Background="Transparent"
+                                      BorderThickness="0"/>
+                      </Track.IncreaseRepeatButton>
+                    </Track>
+                  </Grid>
+                </ControlTemplate>
+              </ScrollBar.Template>
+            </ScrollBar>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль интерактивного GroupBox, выполняющего роль кнопки выбора/снятия отметок -->
+  <Style x:Key="ClickableGroupBoxStyle"
+         TargetType="GroupBox">
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="Cursor"
+            Value="Hand"/>
+    <Setter Property="Background"
+            Value="Transparent"/>
+    <Setter Property="BorderThickness"
+            Value="0"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="GroupBox">
+          <Border x:Name="RootBorder"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="Transparent"
+                  BorderThickness="0"
+                  CornerRadius="4"
+                  Padding="4,2">
+            <ContentPresenter ContentSource="Header"
+                              HorizontalAlignment="Left"
+                              VerticalAlignment="Center"/>
+          </Border>
+
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- Стиль для кнопок действий внизу -->
+  <Style x:Key="ActionButtonStyle"
+         TargetType="Button">
+    <Setter Property="Background"
+            Value="{DynamicResource PanelBackground}"/>
+    <Setter Property="BorderBrush"
+            Value="{DynamicResource BorderBrush}"/>
+    <Setter Property="BorderThickness"
+            Value="1"/>
+    <Setter Property="Padding"
+            Value="5"/>
+    <Setter Property="Foreground"
+            Value="{DynamicResource TextForeground}"/>
+    <Setter Property="Opacity"
+            Value="0.8"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border x:Name="border"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="5">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+              <ContentPresenter Margin="0,0,8,0"/>
+            </StackPanel>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+              <Setter TargetName="border"
+                      Property="Background"
+                      Value="{DynamicResource BorderBrush}"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>
