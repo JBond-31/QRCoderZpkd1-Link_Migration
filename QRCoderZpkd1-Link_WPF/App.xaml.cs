@@ -14,10 +14,17 @@ namespace QRCoderZpkd1_Link
   {
     protected override void OnStartup(StartupEventArgs e)
     {
-      // 1. ЗАГРУЖАЕМ ПОЛЬЗОВАТЕЛЬСКИЕ НАСТРОЙКИ ПЕРЕД ОТРИСОВКОЙ ИНТЕРФЕЙСА
+
+      //1. WPF-версия приложения исторически хранит настройки рядом с исполняемым файлом.
+      SettingsManager.SetSettingsFilePath(
+        Path.Combine(
+          AppContext.BaseDirectory,
+          "UserSetting.json"));
+
+      // 2. Загружаем пользовательские настройки перед отрисовкой интерфейса.
       SettingsManager.Load();
 
-      // 2. Инициализируем локализацию
+      // 3. Инициализируем локализацию
       if (!string.IsNullOrEmpty(SettingsManager.Current.Language))
       {
         // Если язык был ранее сохранен пользователем, применяем строго его
@@ -35,7 +42,7 @@ namespace QRCoderZpkd1_Link
       // Один раз при запуске проверяем все доступные JSON-файлы локализации. LanguageManager передаёт обнаруженные проблемы через WarningOccurred.
       LanguageManager.ValidateLanguageFiles();
 
-      // 3. Применяем сохраненную тему (Светлую или Темную)
+      // 4. Применяем сохраненную тему (Светлую или Темную)
       ApplyGlobalTheme(SettingsManager.Current.Theme);
 
       try
@@ -56,6 +63,7 @@ namespace QRCoderZpkd1_Link
         Shutdown();
       }
     }
+    
     public static void ApplyGlobalTheme(string themeName)
     {
       try
