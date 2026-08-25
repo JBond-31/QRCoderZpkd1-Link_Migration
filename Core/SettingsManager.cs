@@ -1,98 +1,118 @@
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 
 namespace QRCoderZpkd1_Link.Core
 {
-  /// <summary>
-  /// Модель данных для хранения пользовательских настроек
-  /// </summary>
+
+  /// Модель данных для хранения пользовательских настроек.
   public class UserSettings
   {
-    // Делаем координаты nullable (int?), чтобы при первом запуске (когда их еще нет) 
-    // окно могло отцентрироваться по умолчанию
+    // Nullable, чтобы при первом запуске окно могло отцентрироваться по умолчанию.
     public int? WindowLeft { get; set; }
     public int? WindowTop { get; set; }
 
-    // По умолчанию приложение запускается с темной темой
+    // По умолчанию приложение запускается с темной темой.
     public string Theme { get; set; } = "DarkTheme";
 
-    // Если язык пустой, LanguageManager сам подхватит язык системы
+    // Если язык пустой, LanguageManager сам определит язык системы.
     public string Language { get; set; } = string.Empty;
   }
 
-  /// <summary>
-  /// Логический класс для управления сохранением и загрузкой настроек пользователя
-  /// </summary>
+  /// Управляет загрузкой и сохранением пользовательских настроек.
+  /// Класс не содержит платформенной логики. Путь к файлу может быть задан приложением-хостом.
   public static class SettingsManager
   {
-    // Текущие активные настройки
+    private const string SettingsFileName = "UserSetting.json";
+    private const string ApplicationFolderName = "QRCoderZpkd1_Link";
+
+    private static string _settingsFilePath;
+
+    /// Текущие активные настройки.
     public static UserSettings Current { get; private set; } = new UserSettings();
 
-    /// <summary>
-    /// Динамически вычисляет путь к файлу конфигурации в зависимости от операционной системы.
-    /// </summary>
-    private static string GetSettingsFilePath()
+    /// Устанавливает путь к файлу пользовательских настроек.
+    /// Этот метод позволяет UI-хосту определить собственную политику хранения файлов, не помещая платформенную логику в Core.
+    public static void SetSettingsFilePath(string filePath)
     {
-      if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-      {
-        // На Windows приложение портативное: сохраняем строго рядом с исполняемым файлом .exe
-        return Path.Combine(AppContext.BaseDirectory, "UserSetting.json");
-      }
-      else
-      {
-        // На Linux/macOS приложение инсталлируется: папка программы доступна только для чтения.
-        // Сохраняем в папку пользователя ~/.config/QRCoderZpkd1_Link/ (или эквивалент ApplicationData)
-        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        string appFolder = Path.Combine(appDataPath, "QRCoderZpkd1_Link");
+      if (string.IsNullOrWhiteSpace(filePath))
+        throw new ArgumentException(
+          "Путь к файлу настроек не может быть пустым.",
+          nameof(filePath));
 
-        if (!Directory.Exists(appFolder))
-        {
-          Directory.CreateDirectory(appFolder);
-        }
-
-        return Path.Combine(appFolder, "UserSetting.json");
-      }
+      _settingsFilePath = filePath;
     }
 
-    /// <summary>
-    /// Загрузка настроек из файла UserSetting.json
-    /// </summary>
+    /// Возвращает путь к файлу настроек.
+    /// Если хост приложения явно не задал путь, используется стандартная пользовательская папка ApplicationData.
+    private static string GetSettingsFilePath()
+    {
+      if (!string.IsNullOrWhiteSpace(_settingsFilePath))
+        return _settingsFilePath;
+
+      string appDataPath =
+        Environment.GetFolderPath(
+          Environment.SpecialFolder.ApplicationData);
+
+      string appFolder =
+        Path.Combine(appDataPath, ApplicationFolderName);
+
+      return Path.Combine(appFolder, SettingsFileName);
+    }
+
+    /// Загружает настройки из UserSetting.json.
     public static void Load()
     {
       try
       {
         string filePath = GetSettingsFilePath();
-        if (File.Exists(filePath))
+
+        if (!File.Exists(filePath))
         {
-          string json = File.ReadAllText(filePath);
-          Current = JsonSerializer.Deserialize<UserSettings>(json) ?? new UserSettings();
+          Current = new UserSettings();
+          return;
         }
+
+        string json = File.ReadAllText(filePath);
+
+        Current =
+          JsonSerializer.Deserialize<UserSettings>(json)
+          ?? new UserSettings();
       }
       catch
       {
-        // В случае повреждения файла или ошибки прав доступа создаем чистый дефолтный конфиг
+        // При поврежденном файле или ошибке доступа продолжаем работу с настройками по умолчанию.
         Current = new UserSettings();
       }
     }
 
-    /// <summary>
-    /// Сохранение текущих настроек в файл UserSetting.json
-    /// </summary>
+    /// Сохраняет текущие настройки в UserSetting.json.
     public static void Save()
     {
       try
       {
         string filePath = GetSettingsFilePath();
-        // Форматируем JSON с отступами, чтобы пользователю было удобно его читать при необходимости
-        var options = new JsonSerializerOptions { WriteIndented = true };
-        string json = JsonSerializer.Serialize(Current, options);
+
+        string directory = Path.GetDirectoryName(filePath);
+
+        if (!string.IsNullOrWhiteSpace(directory))
+        {
+          Directory.CreateDirectory(directory);
+        }
+
+        var options = new JsonSerializerOptions
+        {
+          WriteIndented = true
+        };
+
+        string json =
+          JsonSerializer.Serialize(Current, options);
+
         File.WriteAllText(filePath, json);
       }
       catch
       {
-        // Игнорируем возможные ошибки записи (например, если нет прав)
+        // Ошибки записи не должны приводить к падению приложения.
       }
     }
   }
