@@ -8,9 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="10.0.9" />
-    <!-- Добавляем библиотеку для генерации QR-кодов -->
-    <PackageReference Include="QRCoder" Version="1.4.3" />
-    <!-- Добавляем поддержку классов Bitmap и Graphics для netstandard2.0 -->
-    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+    <!-- QR и графический renderer теперь работают через SkiaSharp. -->
+    <PackageReference Include="SkiaSharp.QrCode" Version="1.1.1" />
   </ItemGroup>
 </Project>
