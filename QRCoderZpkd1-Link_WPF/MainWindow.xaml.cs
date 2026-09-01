@@ -342,19 +342,39 @@ namespace QRCoderZpkd1_Link
       }
     }
 
-    // Возвращает Preview к исходному состоянию без готовой карточки.
+    // Создает пустую карточку предпросмотра без ссылки. QR заменить невозможно, поэтому показывается логотип в QR-зоне.
     private void ClearPreview()
     {
-      _currentPreviewCard = null;
-
-      if (QrPreviewImage != null)
+      try
       {
-        // Показываем стандартный логотип до генерации карточки.
-        QrPreviewImage.Source =
-          new System.Windows.Media.Imaging.BitmapImage(
-            new Uri(
-              "pack://application:,,,/Assets/Icons/logo_qr.png",
-              UriKind.Absolute));
+        var logoUri = new Uri(
+          "pack://application:,,,/Assets/Icons/logo_qr.png",
+          UriKind.Absolute);
+
+        var logoStreamInfo =
+          System.Windows.Application.GetResourceStream(logoUri);
+
+        using (var logoStream = logoStreamInfo?.Stream)
+        {
+          // Передаем пустой текст QR-зоны. Exporter должен создать карточку 490x630.
+          _currentPreviewCard = PreviewCardExporter.ExportCard(
+            string.Empty,
+            logoStream,
+            string.Empty,
+            string.Empty,
+            string.Empty,
+            string.Empty);
+        }
+
+        if (QrPreviewImage != null)
+        {
+          QrPreviewImage.Source =
+            PngBytesToImageSource(_currentPreviewCard.PngData);
+        }
+      }
+      catch
+      {
+        _currentPreviewCard = null;
       }
     }
     // ==========================================
@@ -384,14 +404,10 @@ namespace QRCoderZpkd1_Link
         input = LinkParser.ConvertGitHubBlobToPagesUrl(input);
       }
 
-      // Если поле пустое, возвращаем дефолтный логотип и очищаем превью.
+      // Если поле пустое, на карточку возвращаем дефолтный логотип и очищаем превью.
       if (string.IsNullOrEmpty(input))
       {
-        if (QrPreviewImage != null)
-        {
-          QrPreviewImage.Source = new System.Windows.Media.Imaging.BitmapImage(
-              new Uri("pack://application:,,,/Assets/Icons/logo_qr.png", UriKind.Absolute));
-        }
+        ClearPreview();
         return;
       }
 
@@ -450,10 +466,8 @@ namespace QRCoderZpkd1_Link
     /// Формирует единую готовую PNG-карточку и отображает её в WPF Preview.
     private void UpdatePreview()
     {
-      // Без корректной ссылки полноценная карточка с QR не генерируется.
+      // PreviewCardExporter умеет создавать карточку даже без URL, поэтому ранний выход здесь не нужен.
       string url = LinkParser.CorrectUrl(UrlTextBox?.Text?.Trim() ?? string.Empty);
-      if (string.IsNullOrEmpty(url))
-        return;
 
       string typeText = string.Empty;
 
@@ -799,12 +813,21 @@ namespace QRCoderZpkd1_Link
       _isAllModelsSelected = false;
       UpdateGroupBoxHeaderText();
 
-      // 9. Возвращаем центральное изображение предпросмотра к исходному логотипу-заглушке.
-      if (QrPreviewImage != null)
+      //7. Очищаем список моделей часов на панели выбора.
+      if (ModelsItemsControl != null)
       {
-        QrPreviewImage.Source = new System.Windows.Media.Imaging.BitmapImage(
-            new Uri("pack://application:,,,/Assets/Icons/logo_qr.png", UriKind.Absolute));
+        ModelsItemsControl.ItemsSource = null;
       }
+
+      // После очистки URL предыдущая готовая карточка больше не актуальна.
+      _currentPreviewCard = null;
+
+      // Сбрасываем состояние массового выбора при смене разрешения или очистке.
+      _isAllModelsSelected = false;
+      UpdateGroupBoxHeaderText();
+
+      // После очистки заново создаём полноценную карточку с логотипом внутри QR-зоны.
+      UpdatePreview();
     }
 
     // ==========================================
