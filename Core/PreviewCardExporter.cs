@@ -40,11 +40,19 @@ namespace QRCoderZpkd1_Link.Core
       // Затем заголовок с поддержкой переноса длинного названия.
       DrawHeader(canvas, typeText, nameText, versionText);
 
-      // QR всегда занимает ту же область карточки: 455x455 начиная с Y=60.
-      GeneratedImage qrImage =
-        QrGenerator.GenerateFinalImage(url, logoStream);
+      // Если ссылка есть — создаём настоящий QR.
+      // Если ссылки нет — создаём QR-зону только с логотипом-заглушкой.
+      if (!string.IsNullOrWhiteSpace(url))
+      {
+        GeneratedImage qrImage =
+          QrGenerator.GenerateFinalImage(url, logoStream);
 
-      DrawQr(canvas, qrImage);
+        DrawQr(canvas, qrImage);
+      }
+      else
+      {
+        DrawEmptyQrZone(canvas, logoStream);
+      }
 
       // Нижняя область карточки предназначена для списка моделей.
       DrawModels(canvas, modelsText);
@@ -104,9 +112,9 @@ namespace QRCoderZpkd1_Link.Core
       using var typefaceBold =
         SKTypeface.FromFamilyName("Segoe UI", SKFontStyle.Bold);
 
-      float typeSize = 13.5f;
-      float nameSize = 14.5f;
-      float versionSize = 13.5f;
+      float typeSize = 18.2f;
+      float nameSize = 19.6f;
+      float versionSize = 18.2f;
 
       using var textPaint = new SKPaint
       {
@@ -123,7 +131,7 @@ namespace QRCoderZpkd1_Link.Core
       float versionWidth = Measure(versionFont, version);
 
       // Сначала уменьшаем Type и Name, как делал старый renderer.
-      while (typeWidth + nameWidth > maxWidth && typeSize > 6f)
+      while (typeWidth + nameWidth > maxWidth && typeSize > 8f)
       {
         typeSize -= 0.5f;
         nameSize -= 0.5f;
@@ -214,15 +222,50 @@ namespace QRCoderZpkd1_Link.Core
         spacing -
         secondMetrics.Ascent;
 
-      // Рисуем обе строки по центру через актуальную перегрузку SkiaSharp.
-      canvas.DrawText(
-        firstLine,
-        CardWidth / 2f,
-        firstBaseline,
-        SKTextAlign.Center,
-        nameFont,
-        textPaint);
+      // Определяем размеры первой строки отдельно для обычного Type и жирного Name.
+      float typePartWidth = string.IsNullOrEmpty(type) ? 0f : Measure(typeFont, type);
+      float namePartWidth = string.IsNullOrEmpty(firstNamePart) ? 0f : Measure(nameFont, firstNamePart);
+      float firstSpacing =
+        !string.IsNullOrEmpty(type) && !string.IsNullOrEmpty(firstNamePart)
+          ? 10f
+          : 0f;
 
+      float firstLineWidth =
+        typePartWidth +
+        firstSpacing +
+        namePartWidth;
+
+      // Центрируем составную первую строку относительно карточки.
+      float firstX =
+        CardWidth / 2f -
+        firstLineWidth / 2f;
+
+      // Type остаётся обычным, Name остаётся жирным.
+      if (!string.IsNullOrEmpty(type))
+      {
+        canvas.DrawText(
+          type,
+          firstX,
+          firstBaseline,
+          SKTextAlign.Left,
+          typeFont,
+          textPaint);
+
+        firstX += typePartWidth + firstSpacing;
+      }
+
+      if (!string.IsNullOrEmpty(firstNamePart))
+      {
+        canvas.DrawText(
+          firstNamePart,
+          firstX,
+          firstBaseline,
+          SKTextAlign.Left,
+          nameFont,
+          textPaint);
+      }
+
+      // Вторая строка содержит продолжение Name и Version и остаётся жирной.
       canvas.DrawText(
         secondLine,
         CardWidth / 2f,
@@ -244,7 +287,7 @@ namespace QRCoderZpkd1_Link.Core
   float headerHeight)
     {
       // Фиксированный визуальный интервал между Type, Name и Version.
-      const float textSpacing = 3f;
+      const float textSpacing = 10f;
 
       float typeWidth = Measure(typeFont, type);
       float nameWidth = Measure(nameFont, name);
@@ -293,6 +336,77 @@ namespace QRCoderZpkd1_Link.Core
         // Рисуем каждый элемент в вычисленной позиции через новую перегрузку API.
         canvas.DrawText(version, x, baseline, SKTextAlign.Left, versionFont, paint);
       }
+    }
+
+    // Рисует пустую QR-зону при старте приложения. Вместо QR отображается логотип по центру.
+    private static void DrawEmptyQrZone(
+      SKCanvas canvas,
+      Stream logoStream)
+    {
+      const float qrSize = 455f;
+      const float qrX = 17.5f;
+      const float qrY = 60f;
+
+      var qrRect = new SKRect(
+        qrX,
+        qrY,
+        qrX + qrSize,
+        qrY + qrSize);
+
+      // Белый фон QR-зоны.
+      using var backgroundPaint = new SKPaint
+      {
+        IsAntialias = true,
+        Color = SKColors.White
+      };
+
+      canvas.DrawRoundRect(
+        new SKRoundRect(qrRect, 20, 20),
+        backgroundPaint);
+
+
+      // Загружаем логотип.
+      if (logoStream != null)
+      {
+        using var logoBitmap =
+          SKBitmap.Decode(logoStream);
+
+        if (logoBitmap != null)
+        {
+          // Логотип занимает всю QR-зону с отступом 10 пикселей со всех сторон.
+          const float logoMargin = 10f;
+          float logoSize = qrSize - logoMargin * 2f;
+
+          float x = qrX + logoMargin;
+          float y = qrY + logoMargin;
+
+          var logoRect = new SKRect(
+            x,
+            y,
+            x + logoSize,
+            y + logoSize);
+
+          // Рисуем логотип с использованием актуальной перегрузки SkiaSharp.
+          canvas.DrawBitmap(
+            logoBitmap,
+            logoRect,
+            new SKSamplingOptions(SKFilterMode.Linear));
+        }
+      }
+
+
+      // Рамка QR-зоны.
+      using var borderPaint = new SKPaint
+      {
+        IsAntialias = true,
+        Style = SKPaintStyle.Stroke,
+        StrokeWidth = 2.1f,
+        Color = new SKColor(60, 60, 60)
+      };
+
+      canvas.DrawRoundRect(
+        new SKRoundRect(qrRect, 20, 20),
+        borderPaint);
     }
 
     private static void DrawQr(SKCanvas canvas, GeneratedImage qrImage)
@@ -345,11 +459,11 @@ namespace QRCoderZpkd1_Link.Core
         return;
 
       const float areaX = 10;
-      const float areaY = 515;
+      const float areaY = 518;
       const float areaWidth = 470;
       const float areaHeight = 105;
 
-      float fontSize = 14.5f;
+      float fontSize = 18.2f;
 
       using var typeface =
         SKTypeface.FromFamilyName("Segoe UI", SKFontStyle.Bold);
@@ -372,13 +486,13 @@ namespace QRCoderZpkd1_Link.Core
         float lineHeight = font.GetFontMetrics(out _);
         float totalHeight = lines.Count * lineHeight;
 
-        if (totalHeight <= areaHeight || fontSize <= 6f)
+        if (totalHeight <= areaHeight || fontSize <= 8f)
           break;
 
         fontSize -= 1f;
         font.Size = fontSize;
       }
-      while (fontSize > 6f);
+      while (fontSize > 8f);
 
       float finalLineHeight = font.GetFontMetrics(out _);
 
